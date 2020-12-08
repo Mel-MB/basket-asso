@@ -1,0 +1,188 @@
+/* SLIDER CONTAINER */
+#slider {
+  margin: 0 auto;
+  width: 700px;
+  max-width: 100%;
+  text-align: center;
+}
+
+#slider input[type=radio] {
+  display: none;
+  /* NOT DISPLAYED => used to control images ! not accessibility friendly => possibility to use margin -9999vh in order to be keyboard focusable */
+}
+
+#slider label {
+  cursor: pointer; /* seems as links to the user*/
+  text-decoration: none;
+}
+
+/* CONTAINER STYLES*/
+#slides {
+  padding: 10px;
+  /* Create a white space to enhance images */
+  border: 3px solid #ccc;
+  background: #fff;
+  position: relative;
+  /*Used to give a fix position to children elements*/
+  z-index: 1;
+}
+
+/* ACTUAL DISPLAYED AREA */
+#overflow {
+  width: 100%;
+  /* #slider = width : 800px - padding ! border box */
+  overflow: hidden;
+}
+
+/* MOUVEMENT CONDITIONS USING CHECKBOXES */
+#slide1:checked~#slides .inner {
+  /* IF #slide1 is checked */
+  margin-left: 0;
+}
+
+#slide2:checked~#slides .inner {
+  /* IF #slide2 is checked */
+  margin-left: -100%;
+}
+
+#slide3:checked~#slides .inner {
+  /* IF #slide3 is checked */
+  margin-left: -200%;
+  /* IF #slide3 is checked */
+}
+
+#slide4:checked~#slides .inner {
+  /* IF #slide4 is checked */
+  margin-left: -300%;
+}
+
+/* SLIDESHOW */
+#slides .inner {
+  /* .inner = slideshow = all slides area */
+  width: 400%;
+  /* 100% x slide nb = 700x4 =2800px */
+  transition: margin-left 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  /* Adds a mouvement transition  */
+  height: auto;
+
+}
+
+/* SLIDE */
+#slides .slide {
+  display: flex;
+  /* to center elements */
+  justify-content: center;
+  align-items: center;
+  float: left;
+  /* each slide is displayed next to the other => all in line */
+  width: 25%;
+  /* 4 slides => 25% each */
+  height: 100%;
+}
+
+.slide-content {
+  width: 100%;
+  position: relative;
+  /*To fix figcaption as overlay in the bottom*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#slider figcaption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#slider img {
+  max-width: 100%;
+  margin: 0 auto;
+  height: auto;
+  display: block;
+}
+/* STYLE SLIDE 
+/* LABEL STYLE - PREV-NEXT */
+#controls {
+  position: relative;
+  /* To display labels as absolute*/
+  width: 100%;
+  height: 50px;
+  margin: -180px 0 0 0;
+  /* hight control */
+  z-index: 3;
+}
+#controls label {
+  display: none;
+  /* no use */
+  width: 50px;
+  height: 50px;
+  opacity: .4;
+  transition: opacity 0.2s ease-out;
+}
+
+#controls label:hover {
+  opacity: 1;
+}
+
+/* NEXT BUTTON LINKING*/
+#slide1:checked~#controls label:nth-child(2),
+#slide2:checked~#controls label:nth-child(3),
+#slide3:checked~#controls label:nth-child(4),
+#slide4:checked~#controls label:nth-child(1) {
+  display: block;
+  float: right;
+  margin: 0 -50px 0 0;
+  background: url(https://www.flaticon.com/svg/static/icons/svg/271/271228.svg) no-repeat;
+}
+
+/* PREVIOUS BUTTON LINKING*/
+#slide1:checked~#controls label:nth-child(4),
+#slide2:checked~#controls label:nth-child(1),
+#slide3:checked~#controls label:nth-child(2),
+#slide4:checked~#controls label:nth-child(3) {
+  display: block;
+  float: left;
+  margin: 0 0 0 -50px;
+  background: url(https://www.flaticon.com/svg/static/icons/svg/271/271220.svg) no-repeat;
+}
+
+/* BULLETS CONTROL NAVIGATION*/
+#bullets {
+  margin: 150px 0 0;
+  text-align: center;
+}
+
+#bullets label {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #ccc;
+  margin: 0 10px;
+}
+/* Displayed bullet style */
+#slide1:checked~#bullets label:nth-child(1),
+#slide2:checked~#bullets label:nth-child(2),
+#slide3:checked~#bullets label:nth-child(3),
+#slide4:checked~#bullets label:nth-child(4) {
+  background-color: #444;
+}
+
+
+/* PREV/NEXT CONTROLS TO DISPLAY INSIDE  */
+@media screen and (max-width:900px) {
+
+  #slide1:checked~#controls label:nth-child(2),
+  #slide2:checked~#controls label:nth-child(3),
+  #slide3:checked~#controls label:nth-child(4),
+  #slide4:checked~#controls label:nth-child(1),
+  #slide1:checked~#controls label:nth-child(4),
+  #slide2:checked~#controls label:nth-child(1),
+  #slide3:checked~#controls label:nth-child(2),
+  #slide4:checked~#controls label:nth-child(3) {
+    margin: 0 20px;
+  }
+}

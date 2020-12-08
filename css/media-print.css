@@ -1,0 +1,31 @@
+@media print {
+    .band {display: none;}
+    #article {
+        margin-top: 150px !important;
+        height: 100%;
+    }
+    #article h1{
+        font-size: 2rem;
+    }
+    #article article{width:70%;}
+    #article article img{
+        display:none;
+    }
+    #article aside{
+        box-sizing: border-box;
+        width: 25%;
+        height: 100%;
+        border: 1px solid grey;
+        padding: 10px;
+    }
+    #article aside img{display:none;}
+    #article aside .overlay{ 
+        background: none;
+        height: auto !important;
+        text-align: left;
+        position: relative !important;
+    }
+    #article aside .overlay > *{
+        color: grey;
+    }
+}
